@@ -11,8 +11,8 @@ from OCP.GProp import GProp_GProps
 
 def get_mass_properties(
     file_path: str,
+    density_kg_m3: float,
     part_id: str = "root",
-    density_kg_m3: float = ...,
 ) -> dict:
     """
     Return mass, centre of mass, and principal moments of inertia for a part.
@@ -20,8 +20,6 @@ def get_mass_properties(
     density_kg_m3: material density in kg/m³ (required).
     Lengths in mm, mass in kg, inertia in kg·mm².
     """
-    if density_kg_m3 is ...:
-        raise TypeError("density_kg_m3 is required")
 
     shape = load_part(file_path, part_id)
 
