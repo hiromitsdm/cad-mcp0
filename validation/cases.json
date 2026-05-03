@@ -1,0 +1,97 @@
+[
+  {
+    "id": 1,
+    "tool": "list_assembly_tree",
+    "question": "What parts does bracket.step contain? Is it a single part or an assembly?",
+    "call": {
+      "file_path": "fixtures/bracket.step"
+    },
+    "expected_answer": {
+      "root.type": "part",
+      "root.part_id": "root",
+      "root.children": []
+    },
+    "tolerance": "exact",
+    "notes": "Single solid → depth-1 tree, no children."
+  },
+  {
+    "id": 2,
+    "tool": "get_part_dimensions",
+    "question": "What are the overall dimensions of the bracket in millimetres, and what is its volume?",
+    "call": {
+      "file_path": "fixtures/bracket.step",
+      "part_id": "root"
+    },
+    "expected_answer": {
+      "bbox_mm.x": 100.0,
+      "bbox_mm.y": 60.0,
+      "bbox_mm.z": 10.0,
+      "volume_mm3": 59117.5266
+    },
+    "tolerance": {
+      "bbox_mm.*": 0.1,
+      "volume_mm3": 1.0
+    },
+    "notes": "Net volume subtracts the four M5 holes."
+  },
+  {
+    "id": 3,
+    "tool": "find_holes",
+    "question": "How many holes does the bracket have? What diameter and depth are they?",
+    "call": {
+      "file_path": "fixtures/bracket.step",
+      "part_id": "root"
+    },
+    "expected_answer": {
+      "holes.count": 4,
+      "holes[*].diameter_mm": 5.3,
+      "holes[*].depth_mm": 10.0,
+      "holes[*].axis": [0.0, 0.0, 1.0]
+    },
+    "tolerance": {
+      "diameter_mm": 0.01,
+      "depth_mm": 0.01
+    },
+    "notes": "Four M5 clearance (5.3 mm) through-holes at bracket corners."
+  },
+  {
+    "id": 4,
+    "tool": "measure_distance",
+    "question": "What is the space-diagonal distance of the bracket — corner to opposite corner?",
+    "call": {
+      "file_path": "fixtures/bracket.step",
+      "part_id_a": "root",
+      "selector_a": "bbox_min",
+      "part_id_b": "root",
+      "selector_b": "bbox_max"
+    },
+    "expected_answer": {
+      "distance_mm": 117.047
+    },
+    "tolerance": {
+      "distance_mm": 0.001
+    },
+    "notes": "sqrt(100² + 60² + 10²) = sqrt(13700) ≈ 117.0470 mm."
+  },
+  {
+    "id": 5,
+    "tool": "get_mass_properties",
+    "question": "If the bracket is machined from aluminium (density 2700 kg/m³), what is its mass and where is the centre of mass?",
+    "call": {
+      "file_path": "fixtures/bracket.step",
+      "density_kg_m3": 2700.0,
+      "part_id": "root"
+    },
+    "expected_answer": {
+      "mass_kg": 0.159617,
+      "center_of_mass_mm.x_mm": 0.0,
+      "center_of_mass_mm.y_mm": 0.0,
+      "center_of_mass_mm.z_mm": 5.0
+    },
+    "tolerance": {
+      "mass_kg": 0.0001,
+      "center_of_mass_mm.*": 0.001
+    },
+    "notes": "Symmetric geometry places COM at centroid (0, 0, 5). Mass ≈ 160 g."
+  }
+]
