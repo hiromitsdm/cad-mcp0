@@ -34,6 +34,37 @@ When designing or modifying any MCP tool in this server, follow these convention
 - Good: "Find cylindrical holes in a part. Returns position, axis, diameter,
   and depth for each in millimeters."
 
+## Handling structural variants
+
+A STEP file may be a single part or a multi-level assembly. Every tool that
+returns a tree or takes a `part_id` must handle both uniformly:
+
+- **Always return a tree.** A single part is a depth-1 tree with one root node
+  and `"children": []`. It is never an error or a special case.
+- **Tree schema** (recursive):
+  ```json
+  {
+    "root": {
+      "type": "part" | "assembly",
+      "name": "string",
+      "part_id": "string",
+      "children": []
+    }
+  }
+  ```
+- **`part_id` format**: root node is always `"root"`. Each child appends its
+  zero-based index with a dot: `"root.0"`, `"root.1"`, `"root.0.0"`, etc.
+  These IDs are stable within one call — they are positional, not name-based.
+- **`type` rules**: `"part"` if the node is a leaf solid (no sub-shapes that
+  are themselves solids); `"assembly"` if it has at least one child solid or
+  sub-compound.
+- **`children` for a part**: always `[]`, never omitted.
+- **`name` sourcing**: use the shape's STEP label if non-empty; otherwise fall
+  back to `"part_<part_id>"`.
+- **Other tools with `part_id`**: they must accept any `part_id` from the tree,
+  traverse the shape to find it, and operate on that sub-shape only. If the
+  caller passes `"root"`, operate on the whole file.
+
 ## Adding a new tool
 1. Write the schema in `tools/schemas.py` following these conventions.
 2. Implement in `tools/<tool_name>.py` as a pure function.
