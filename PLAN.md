@@ -1,10 +1,7 @@
 # CAD-MCP — Plan
 
 Goal: CAD-reasoning MCP server, STEP files, LLM-queryable, weekend build
-cat > PLAN.md << 'EOF'
-# CAD-MCP — Plan
 
-Goal: CAD-reasoning MCP server, STEP files, LLM-queryable, weekend build
 ├── Layer 1 — Environment & primitives        [Day 1, ~2h]
 │   ├── 1.1 venv with Python 3.12
 │   ├── 1.2 pip install build123d, mcp
@@ -30,9 +27,9 @@ Goal: CAD-reasoning MCP server, STEP files, LLM-queryable, weekend build
 │   └── 4.2 .claude/skills/step-debugging/SKILL.md
 │
 └── Layer 5 — Validation & polish             [Day 3, ~3h]
-├── 5.1 End-to-end demo: real STEP, real questions, verifiable answers
-├── 5.2 README with install + demo
-├── 5.3 Transcript review and export
-└── 5.4 Submit
+    ├── 5.1 End-to-end demo: real STEP, real questions, verifiable answers
+    ├── 5.2 README with install + demo
+    ├── 5.3 Transcript review and export
+    └── 5.4 Submit
 
-**Total: ~11.5h budgeted, 12h target.** Buffer: 0.5h. If overrun, drop 2.6 (threads) and 5.2 polish, never drop 5.1 (demo).
+Total: ~11.5h budgeted, 12h target. Buffer: 0.5h. If overrun, drop 2.6 (threads) and 5.2 polish, never drop 5.1 (demo).
