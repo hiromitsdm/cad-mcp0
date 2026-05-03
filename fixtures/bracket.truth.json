@@ -1,0 +1,66 @@
+{
+  "description": "Flat bracket 100\u00d760\u00d710 mm, four M5-clearance through-holes at corners",
+  "bbox_mm": {
+    "x": 100.0,
+    "y": 60.0,
+    "z": 10.0
+  },
+  "gross_volume_mm3": 60000.0,
+  "net_volume_mm3": 59117.5266,
+  "holes": [
+    {
+      "id": 0,
+      "center_x_mm": -42.0,
+      "center_y_mm": -22.0,
+      "center_z_mm": 0.0,
+      "diameter_mm": 5.3,
+      "depth_mm": 10.0,
+      "axis": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 1,
+      "center_x_mm": 42.0,
+      "center_y_mm": -22.0,
+      "center_z_mm": 0.0,
+      "diameter_mm": 5.3,
+      "depth_mm": 10.0,
+      "axis": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "center_x_mm": -42.0,
+      "center_y_mm": 22.0,
+      "center_z_mm": 0.0,
+      "diameter_mm": 5.3,
+      "depth_mm": 10.0,
+      "axis": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "center_x_mm": 42.0,
+      "center_y_mm": 22.0,
+      "center_z_mm": 0.0,
+      "diameter_mm": 5.3,
+      "depth_mm": 10.0,
+      "axis": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "mass_density_kg_m3_reference": 2700.0,
+  "mass_kg_at_reference_density": 0.159617
+}
