@@ -36,9 +36,9 @@ def find_holes(
     file_path: str,
     part_id: str = "root",
     tolerance_mm: float = 0.01,
-) -> list:
-    """Find cylindrical holes in a part. Returns position (mm), axis direction, diameter (mm), and depth (mm) for each hole. Returns [] if none found."""
-    return _holes(file_path, part_id, tolerance_mm)
+) -> dict:
+    """Find cylindrical holes in a part. Returns a 'holes' list; each entry has position (mm), axis direction, diameter (mm), and depth (mm). holes=[] if none found."""
+    return {"holes": _holes(file_path, part_id, tolerance_mm)}
 
 
 @mcp.tool()
