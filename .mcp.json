@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cad": {
+      "command": "/Users/hirokiogasawara/Documents/GitHub/cad-mcp0/venv/bin/python",
+      "args": ["/Users/hirokiogasawara/Documents/GitHub/cad-mcp0/server.py"]
+    }
+  }
+}
